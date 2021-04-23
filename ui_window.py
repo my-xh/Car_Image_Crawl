@@ -6,7 +6,7 @@
 @Author  : my-xh
 @Version : 1.0
 @Software: PyCharm
-@Desc    : 
+@Desc    :
 """
 
 from PyQt5.QtWidgets import QApplication, QMainWindow

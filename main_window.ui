@@ -2,16 +2,34 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1016</width>
-    <height>740</height>
+    <width>1117</width>
+    <height>815</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1117</width>
+    <height>815</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1117</width>
+    <height>815</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>汽车之家图片抓取工具</string>
+  </property>
+  <property name="layoutDirection">
+   <enum>Qt::LeftToRight</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QPushButton" name="btn_search">
@@ -33,7 +51,7 @@
       <x>10</x>
       <y>60</y>
       <width>211</width>
-      <height>651</height>
+      <height>731</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -45,18 +63,23 @@
        <x>0</x>
        <y>0</y>
        <width>209</width>
-       <height>649</height>
+       <height>729</height>
       </rect>
      </property>
-     <widget class="QTreeView" name="tree_dir">
+     <widget class="QTreeWidget" name="tree_dir">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
         <width>211</width>
-        <height>621</height>
+        <height>731</height>
        </rect>
       </property>
+      <column>
+       <property name="text">
+        <string notr="true">1</string>
+       </property>
+      </column>
      </widget>
     </widget>
    </widget>
@@ -65,8 +88,8 @@
      <rect>
       <x>220</x>
       <y>60</y>
-      <width>781</width>
-      <height>651</height>
+      <width>881</width>
+      <height>731</height>
      </rect>
     </property>
     <property name="widgetResizable">
@@ -77,21 +100,15 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>779</width>
-       <height>649</height>
+       <width>879</width>
+       <height>729</height>
       </rect>
      </property>
-     <widget class="QWidget" name="gridLayoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>781</width>
-        <height>651</height>
-       </rect>
-      </property>
-      <layout class="QGridLayout" name="grid_image"/>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout_5">
+      <item>
+       <layout class="QGridLayout" name="grid_image"/>
+      </item>
+     </layout>
     </widget>
    </widget>
   </widget>

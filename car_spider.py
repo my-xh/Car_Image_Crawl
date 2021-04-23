@@ -24,6 +24,7 @@ class CarSpider():
 
     def __init__(self):
         self.cwd = os.getcwd()  # 获取当前工作目录
+        self.path = None  # 图片保存路径
         self.urls = [
             'https://car.autohome.com.cn/pic/series-s32890/385-1.html#pvareaid=2042222',  # 车身外观
             'https://car.autohome.com.cn/pic/series-s32890/385-10.html#pvareaid=2042222',  # 中控方向盘
@@ -35,10 +36,11 @@ class CarSpider():
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.119 Safari/537.36',
         })
 
-    def get_img(self):
+    def get_img(self, save_to=None):
         """获取汽车图片"""
         start = time.time()
 
+        self.path = save_to
         for img, title, num in self.__crawl_strategy():
             self.__download(img, title, num)
 
@@ -59,19 +61,25 @@ class CarSpider():
 
     def __download(self, img, title, num):
         """下载图片"""
-        dir_name = os.path.join(self.cwd, f'car/{title}').replace('/', '\\')
+        if self.path is None:
+            dir_name = os.path.join(self.cwd, f'car/{title}').replace('/', '\\')
+        else:
+            dir_name = os.path.join(self.path, f'{title}').replace('/', '\\')
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
 
         _, img_ext = os.path.splitext(img)
         img_name = os.path.join(dir_name, f'{num}{img_ext}').replace('/', '\\')
-        response = self.session.get(img)
-        print(f'正在下载{img_name}...')
-        with open(img_name, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
-                if not chunk:
-                    break
-                f.write(chunk)
+        try:
+            response = self.session.get(img)
+            print(f'正在下载{img_name}...')
+            with open(img_name, 'wb') as f:
+                for chunk in response.iter_content(chunk_size=CHUNK_SIZE):
+                    if not chunk:
+                        break
+                    f.write(chunk)
+        except:
+            print(f'{img_name}下载失败，已自动跳过...')
 
 
 if __name__ == '__main__':
